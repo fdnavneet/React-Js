@@ -2,6 +2,7 @@ import FoodItem from "./components/FoodItems";
 import ErrorMassage from "./components/ErrorMessage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Container from "./components/Container";
 
 function App() {
   let foodItem = [" dal", "Gren veg", "Roti", "salad", " Milk","mutton"];
@@ -14,8 +15,8 @@ function App() {
 
 
   return (
-    <>
-      <h1>Healthy Foods</h1>
+    <Container>
+      <h1 className="food-heading">Healthy Foods</h1>
 
       {/* ternury operator */}
       {/* {foodItem.length === 0 ? <h3>I am still hungry</h3> :null } */}
@@ -27,7 +28,7 @@ function App() {
      <FoodItem  item = {foodItem} />
 
       
-    </>
+    </Container>
   );
 }
 
