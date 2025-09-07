@@ -1,8 +1,8 @@
 import styles from "./Container.module.css";
 
-const Container = (props) => {
+const Container = ({children}) => {
  return(
-  <div className={styles.Container}>{props.children}</div>
+  <div className={styles.Container}>{children}</div>
  )
 };
 export default Container;
