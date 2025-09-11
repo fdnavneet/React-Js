@@ -4,13 +4,12 @@ import TodoItems from "./components/TodoItems";
 import WelcomeMessage from "./components/Welcomemessage";
 import "./App.css";
 import { useState } from "react";
-
-
+import { TodoItemsContex } from "./store/todo-items-store";
 
 function App() {
   const [todoItems, setTodoItems] = useState([]);
 
-  const handleNewItem = (itemName, itemDueDate) => {
+  const addNewItem = (itemName, itemDueDate) => {
     setTodoItems((currValue) => [
       ...currValue,
       {
@@ -19,23 +18,25 @@ function App() {
       },
     ]);
   };
-  const handleDeleteItem = (todoItemName) => {
+  const deleteItem = (todoItemName) => {
     const newTodoItems = todoItems.filter((item) => item.name !== todoItemName);
     setTodoItems(newTodoItems);
   };
-
   return (
-    
-    <center className="todo-container">
-      <AppName />
-      <AddTodo onNewItem={handleNewItem} />
-      {todoItems.length === 0 && <WelcomeMessage todoItems={todoItems} />}
-      <TodoItems
-        todoItems={todoItems}
-        onDelteClick={handleDeleteItem}
-      ></TodoItems>
-    </center>
-   
+    <TodoItemsContex.Provider value={{
+      todoItems:todoItems,
+      addNewItem:addNewItem,
+      deleteItem:deleteItem,
+      }}>
+      <center className="todo-container">
+        <AppName />
+        <AddTodo  />
+         <WelcomeMessage  />
+        <TodoItems
+          
+        ></TodoItems>
+      </center>
+    </TodoItemsContex.Provider>
   );
 }
 
